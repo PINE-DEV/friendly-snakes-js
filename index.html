@@ -1,4 +1,87 @@
-<html>
-  <head>Friendly Snakes</head>
-  <body>Hey</body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Friendly Snakes</title>
+    <meta charset="utf-8"/>
+  </head>
+  <body>
+    <div id="title">Friendly Snakes
+    </div>
+    <div id="game">
+      <canvas width="800" height="800" id="game-canvas"></canvas>
+    </div>
+  </body>
+  <style>
+   html { height: 100%;}
+   body {
+     margin: 0px;
+     padding: 8px;
+     height: calc(100% - 16px);
+     display: grid;
+     grid-template-columns: 1fr;
+     grid-template-rows: 100px 1fr;
+     grid-template-areas: "head"
+     "body";
+   }
+   #title {
+     grid-area: head;
+     background: lightgreen;
+   }
+   #game {
+     background: grey;
+     grid-area: body;
+   }
+   #game-canvas {
+     margin: auto;
+     display: block;
+     width: 800px;
+   }
+   .fullscreen {
+     position: absolute;
+     top: 0; right: 0;left: 0; bottom: 0;
+   }
+
+  </style>
+  <script>
+   /* Beautiful polyfill */
+       var vendors = ['webkit', 'moz'];
+   for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+     window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+     window.cancelAnimationFrame =
+       window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
+   }
+
+   animate();
+
+   function draw() {
+     var canvas = document.getElementById('game-canvas');
+     if (canvas.getContext) {
+       var ctx = canvas.getContext('2d');
+       width = canvas.width
+       height = canvas.height
+       ctx.fillRect(0,0,width,height);
+       ctx.fillRect(25, 25, 100, 100);
+       ctx.clearRect(45, 45, 60, 60);
+       ctx.strokeRect(50, 50, 50, 50);
+     }
+   }
+
+   function animate() {
+     window.requestAnimationFrame( animate );
+     draw();
+   }
+
+
+// Background image
+var bgReady = false;
+var bgImage = new Image();
+bgImage.onload = function () {
+	bgReady = true;
+};
+   bgImage.src = "images/background.png";
+
+   //Game objects
+  // var snake
+  </script>
 </html>
+
